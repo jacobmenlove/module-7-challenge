@@ -1,9 +1,13 @@
 // TODO: Include packages needed for this application
-const fs = require('fs');
-const inquirer = require('inquirer');
-const path = require('path');
-const generateMarkdown = require('./utils/generateMarkdown');
-const { default: Choices } = require('inquirer/lib/objects/choices');
+import fs from 'fs';
+import inquirer from 'inquirer';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import generateMarkdown from './utils/generateMarkdown.js';
+
+// Get current directory
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // TODO: Create an array of questions for user input
 const questions = [

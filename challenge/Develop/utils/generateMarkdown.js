@@ -16,6 +16,9 @@ function renderLicenseBadge(license) {
 }
 }
 
+// TODO: Create a function that returns the license link
+// If there is no license, return an empty string
+
 function renderLicenseLink(license) {
   switch (license) {
       case 'MIT':
@@ -26,11 +29,11 @@ function renderLicenseLink(license) {
           return '[GPL 3.0 License](https://opensource.org/licenses/GPL-3.0)';
       case 'BSD 3-Clause':
           return '[BSD 3-Clause License](https://opensource.org/licenses/BSD-3-Clause)';
-      default:
+      default:t
           return '';
   }
 }
-// TODO: Create a function that returns the license link
+// TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
 
 function renderLicenseSection(license) {
@@ -38,15 +41,46 @@ function renderLicenseSection(license) {
   return `## License\nThis project is licensed under the ${license} license. ${renderLicenseLink(license)}`;
 }
 
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
-function renderLicenseSection(license) {}
 
 // TODO: Create a function to generate markdown for README
+
 function generateMarkdown(data) {
+  const licenseBadge = renderLicenseBadge(data.license);
+  const licenseSection = renderLicenseSection(data.license);
+
   return `# ${data.title}
 
-`;
-}
+${licenseBadge}
 
+## Table of Contents
+- [Description](#description)
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
+- [Contributing](#contributing)
+- [Tests](#tests)
+- [Questions](#questions)
+
+## Description
+${data.description}
+
+## Installation
+${data.installation}
+
+## Usage
+${data.usage}
+
+${licenseSection}
+
+## Contributing
+${data.contributing}
+
+## Tests
+${data.tests}
+
+## Questions
+For any questions, please contact me at [${data.email}](mailto:${data.email}).
+You can also find more of my work at [GitHub/${data.github}](https://github.com/${data.github}).
+  `;
+}
 export default generateMarkdown;
