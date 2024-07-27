@@ -66,10 +66,20 @@ const questions = [
 
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(fileName, data) {
+    return fs.writeFileSync(path.join(process.cwd(), fileName), data);
+}
 
 // TODO: Create a function to initialize app
-function init() {}
-
+async function init() {
+    try {
+        const answers = await inquirer.prompt(questions);
+        const markdown = generateMarkdown(answers);
+        writeToFile('README.md', markdown);
+        console.log('README.md file has been generated successfully!');
+    } catch (error) {
+        console.error('Error generating README:', error);
+    }
+}
 // Function call to initialize app
 init();
